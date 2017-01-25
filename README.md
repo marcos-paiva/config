@@ -1,2 +1,2 @@
 # config
-Just collect of my config files :bowtie:
+Just a collect of my config files :bowtie:
