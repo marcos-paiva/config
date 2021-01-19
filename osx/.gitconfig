@@ -1,0 +1,91 @@
+
+[user]
+	name = Marcos
+	email = eu.marcos.paiva@gmail.com
+
+[color]
+  ui = true
+  status = auto
+  branch = auto
+  pager = true
+  diff = auto
+
+[color "branch"]
+  current = yellow reverse
+  local = yellow
+  remote = green
+
+[color "diff"]
+  meta = yellow bold
+  frag = magenta bold
+  old = red bold
+  new = green bold
+
+[color "status"]
+  added = yellow
+  changed = green
+  untracked = cyan
+
+[core]
+  pager = less -FRSX
+  whitespace=fix,-indent-with-non-tab,trailing-space,cr-at-eol
+  excludesfile = ~/.gitignore
+	autocrlf = input
+	filemode = false
+	editor = code --wait
+
+[giggle]
+  	compact-mode = false
+  	main-window-maximized = false
+  	main-window-geometry = 1178x875+1354+56
+
+[cola]
+	savewindowsettings = true
+	geometry = 936x485+296,75
+
+[alias]
+  st = status
+  ci = commit
+  cia = commit -a
+  cim = commit -m
+  ciam = commit -a -m
+  cii = commit --interactive
+  co = checkout
+  br = branch
+  pl = pull
+  ps = push
+  pso = push origin master
+  psa = push --all
+  df = diff
+  lg = log --pretty=oneline
+  sa = stash apply
+  ss = stash create
+  rename = commit --amend
+  now = commit --amend --date=now
+  clear = clean -e '!*.orig' -f
+  cleanup = !git branch --merged | grep  -v '\\*\\|master\\|develop\\|main' | xargs -n 1 git branch -d
+  perf = gc --prune=now
+	squash = !git rebase -i $(git merge-base HEAD master)
+	clog = log --graph --abbrev-commit --decorate --date=relative --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)'
+  cle = status -s | cut -d " " -f 2 | xargs rm
+
+
+[merge]
+  	summary = true
+[filter "lfs"]
+	required = true
+	required = true
+	smudge = git-lfs smudge -- %f
+	required = true
+	required = true
+	clean = git-lfs clean -- %f
+	process = git-lfs filter-process
+
+[merge]
+	tool = vscode
+[mergetool "vscode"]
+	cmd = code --wait $MERGED
+[diff]
+	tool = vscode
+[difftool "vscode"]
+	cmd = code --wait --diff
